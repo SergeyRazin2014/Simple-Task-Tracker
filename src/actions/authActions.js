@@ -1,11 +1,13 @@
 import { AUTH_SUCCESS, AUTH_FAILURE, LOGOUT } from './types';
 import UserService from '../services/user-service';
-import history from '../infrastructure/history';
 
-const authSuccessAction = (user) => {
+const authSuccessAction = (userId) => {
+
+    debugger;
+
     return {
         type: AUTH_SUCCESS,
-        payload: user,
+        payload: userId,
     }
 }
 
@@ -21,11 +23,10 @@ const authAction = (email, password) => (dispatch) => {
 
     if (user) {
         localStorage.setItem("userId", user.id);
-        dispatch(authSuccessAction(user));
+        dispatch(authSuccessAction(user.id));
     } else {
         dispatch(authFailureAction())
     }
-
 }
 
 const logoutAction = () => {
@@ -36,12 +37,9 @@ const logoutAction = () => {
 
 const logout = () => (dispatch) => {
 
-    debugger;
-
     localStorage.removeItem("userId");
-    //history.push('/aaa');
 
     return dispatch(logoutAction());
 }
 
-export { authAction, logout };
+export { authAction, logout, authSuccessAction };

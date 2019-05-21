@@ -1,3 +1,5 @@
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_FAILURE = 'AUTH_FAILURE';
 export const LOGOUT = 'LOGOUT';
+export const LOAD_TASKS_SUCCESS = 'LOAD_TASKS_SUCCESS';
+export const LOAD_TASKS_FAILURE = 'LOAD_TASKS_FAILURE';

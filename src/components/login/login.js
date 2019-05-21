@@ -1,7 +1,8 @@
 import React from 'react';
 import { authAction } from '../../actions/authActions'
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
+
 
 import './login.css';
 
@@ -13,27 +14,22 @@ class Login extends React.Component {
         this.state = {
             email: "",
             password: "",
-            redirectToTasks: "",
         }
     }
 
     submit = (e) => {
 
-        debugger;
-
         e.preventDefault();
 
         this.props.authAction(this.state.email, this.state.password);
 
-        if (localStorage.getItem("userId")) {
-            this.setState({ redirectToTasks: true })
+        if (localStorage.userId) {
+            this.props.history.push('/tasks')
         }
 
-        if (!localStorage.getItem("userId")) {
+        if (!localStorage.userId) {
             alert('failure');
         }
-
-
     }
 
     changeInput = (e) => {
@@ -46,8 +42,9 @@ class Login extends React.Component {
 
     render() {
 
-        if (this.state.redirectToTasks) {
-            return <Redirect to='/tasks' />
+
+        if(localStorage.userId){
+            return <Redirect to='/tasks'/>
         }
 
         return (
@@ -64,4 +61,4 @@ class Login extends React.Component {
 
 
 
-export default connect(null, { authAction })(Login);
+export default connect(null, { authAction })(withRouter(Login));

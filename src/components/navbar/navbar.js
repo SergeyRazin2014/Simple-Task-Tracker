@@ -2,31 +2,37 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 
-import { logout } from '../../actions/authActions';
+import { logout, authSuccessAction } from '../../actions/authActions';
+import store from '../../store';
 
 import './navbar.css';
 
+
+debugger;
+
+//☻ в диспатч передать тип и userId
+if (localStorage.userId) {
+    store.dispatch(authSuccessAction(localStorage.userId))
+}
+
+
 class Navbar extends React.Component {
 
-
-    constructor(props) {
-        super(props);
-    }
-
     logout = (e) => {
-
-        debugger;
 
         e.preventDefault();
 
         this.props.logout();
 
         this.props.history.push('/');
-
-
     }
 
     render() {
+
+        if (!localStorage.getItem('userId')) {
+            return null;
+        }
+
         return (
             <div className="navbar-block" >
                 <p>Task Tracker</p>

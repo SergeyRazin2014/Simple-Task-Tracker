@@ -5,18 +5,21 @@ import { AUTH_FAILURE, AUTH_SUCCESS, LOGOUT } from '../actions/types';
 const initialState = {}
 
 const auth = (state = initialState, action) => {
+
+    debugger;
+
     switch (action.type) {
         case AUTH_SUCCESS:
             return {
-                ...state, user: action.payload
+                ...state, userId: action.payload
             }
         case AUTH_FAILURE:
             return {
-                ...state, user: null
+                ...state, userId: null
             }
         case LOGOUT:
             return {
-                ...state, user: null
+                ...state, userId: null
             }
 
 

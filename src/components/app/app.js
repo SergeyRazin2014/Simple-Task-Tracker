@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import history from '../../infrastructure/history';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import store from '../../store';
@@ -9,10 +8,10 @@ import TaskList from '../task-list';
 import Navbar from '../navbar';
 
 class App extends Component {
+
     render() {
 
         return (
-
             <Provider store={store} >
                 <Router >
                     <Navbar />
