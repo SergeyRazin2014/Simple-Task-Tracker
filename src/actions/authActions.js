@@ -3,8 +3,6 @@ import UserService from '../services/user-service';
 
 const authSuccessAction = (userId) => {
 
-    debugger;
-
     return {
         type: AUTH_SUCCESS,
         payload: userId,

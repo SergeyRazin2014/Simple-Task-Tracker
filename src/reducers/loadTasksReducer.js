@@ -1,7 +1,8 @@
-import { LOAD_TASKS_SUCCESS, LOAD_TASKS_FAILURE } from '../actions/types';
+import { LOAD_TASKS_SUCCESS, LOAD_TASKS_FAILURE, LOAD_TASK_SUCCESS, LOAD_TASK_FAILURE } from '../actions/types';
 
 const initState = {
-    tasks: []
+    tasks: [],
+    task: null
 }
 
 const loadTasksReducer = (state = initState, action) => {
@@ -14,6 +15,15 @@ const loadTasksReducer = (state = initState, action) => {
         case LOAD_TASKS_FAILURE:
             return {
                 ...state, tasks: []
+            }
+
+        case LOAD_TASK_SUCCESS:
+            return {
+                ...state, task: action.payload
+            }
+        case LOAD_TASK_FAILURE:
+            return {
+                ...state, task: null
             }
 
         default:

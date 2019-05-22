@@ -6,6 +6,7 @@ import store from '../../store';
 import Login from '../login';
 import TaskList from '../task-list';
 import Navbar from '../navbar';
+import TaskImtem from '../task-item';
 
 class App extends Component {
 
@@ -18,6 +19,12 @@ class App extends Component {
                     <Switch>
                         <Route path="/" component={Login} exact />
                         <Route path="/tasks" component={TaskList} exact />
+                        <Route path="/task/:id" render={({ match, location, history }) => {
+                            const { id } = match.params;
+                            return <TaskImtem taskId={id} />
+                        }
+
+                        } />
                     </Switch>
                 </Router>
             </Provider>

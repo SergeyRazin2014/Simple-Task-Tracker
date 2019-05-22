@@ -1,4 +1,4 @@
-import { LOAD_TASKS_SUCCESS, LOAD_TASKS_FAILURE } from './types';
+import { LOAD_TASKS_SUCCESS, LOAD_TASKS_FAILURE, LOAD_TASK_SUCCESS, LOAD_TASK_FAILURE } from './types';
 import TaskService from '../services/tasc-service';
 
 const loadTasksSuccess = (tasks) => {
@@ -14,9 +14,9 @@ const loadTasksFailure = () => {
     }
 }
 
+
+
 const loadTasks = (userId) => (dispatch) => {
-
-
     try {
         let tasks = new TaskService().getTasksForUser(userId);
         dispatch(loadTasksSuccess(tasks));
@@ -25,4 +25,13 @@ const loadTasks = (userId) => (dispatch) => {
     }
 }
 
-export { loadTasks };
+const loadTask = (taskId) => (dispatch)=>{
+    try {
+        let task = new TaskService().getTask(taskId)
+        dispatch({ type: LOAD_TASK_SUCCESS, payload: task });
+    } catch (err) {
+        dispatch({ LOAD_TASK_FAILURE });
+    }
+}
+
+export { loadTasks , loadTask};

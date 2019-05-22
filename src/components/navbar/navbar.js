@@ -8,9 +8,7 @@ import store from '../../store';
 import './navbar.css';
 
 
-debugger;
 
-//☻ в диспатч передать тип и userId
 if (localStorage.userId) {
     store.dispatch(authSuccessAction(localStorage.userId))
 }

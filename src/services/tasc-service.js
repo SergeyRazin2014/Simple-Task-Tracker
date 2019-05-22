@@ -41,9 +41,12 @@ const tasks = [
 class TaskService {
     getTasksForUser(userId) {
 
-        debugger;
-
         var res = tasks.filter(x => x.userId == userId);
+        return res;
+    }
+
+    getTask(taskId){
+        var res = tasks.find(x=>x.id == taskId);
         return res;
     }
 }

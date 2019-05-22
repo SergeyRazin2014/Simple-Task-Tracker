@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../actions/tasksAction';
+import TaskRow from '../task-row';
 
 import './tast-list.css';
 
@@ -26,12 +27,10 @@ class TaskList extends React.Component {
             return <p>No tasks</p>
         }
 
+        
+
         let tasksRows = this.props.tasks.map(task => {
-            return <tr key={task.id}>
-                <td>{task.title}</td>
-                <td>{task.priority}</td>
-                <td>{task.deadline}</td>
-            </tr>
+            return <TaskRow task={task} />
         })
 
         return (
