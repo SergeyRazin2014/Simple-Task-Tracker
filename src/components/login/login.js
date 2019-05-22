@@ -42,7 +42,6 @@ class Login extends React.Component {
 
     render() {
 
-
         if(localStorage.userId){
             return <Redirect to='/tasks'/>
         }

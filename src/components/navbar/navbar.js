@@ -2,17 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
 
-import { logout, authSuccessAction } from '../../actions/authActions';
-import store from '../../store';
-
+import { logout } from '../../actions/authActions';
 import './navbar.css';
-
-
-
-if (localStorage.userId) {
-    store.dispatch(authSuccessAction(localStorage.userId))
-}
-
 
 class Navbar extends React.Component {
 
@@ -22,7 +13,7 @@ class Navbar extends React.Component {
 
         this.props.logout();
 
-        this.props.history.push('/');
+        this.props.history.push('/auth');
     }
 
     render() {

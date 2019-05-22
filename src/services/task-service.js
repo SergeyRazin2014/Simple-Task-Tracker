@@ -16,7 +16,7 @@ const tasks = [
         id: 2,
         userId: 1,
         title: 'Perform the test task for Simbirsoft2',
-        priority: 'critical',
+        priority: 'normal',
         status: 'done',
         deadline: '10.10.2019',
         description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus fugiat, fuga omnis quibusdam doloribus delectus, ratione illum, eaque aut veniam veritatis adipisci laborum. Optio ex nostrum molestiae. Porro, soluta quam?
@@ -28,7 +28,7 @@ const tasks = [
         id: 3,
         userId: 2,
         title: 'Perform the test task for Simbirsoft3',
-        priority: 'critical',
+        priority: 'normal',
         status: 'done',
         deadline: '10.10.2019',
         description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus fugiat, fuga omnis quibusdam doloribus delectus, ratione illum, eaque aut veniam veritatis adipisci laborum. Optio ex nostrum molestiae. Porro, soluta quam?

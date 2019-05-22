@@ -1,5 +1,5 @@
 import { LOAD_TASKS_SUCCESS, LOAD_TASKS_FAILURE, LOAD_TASK_SUCCESS, LOAD_TASK_FAILURE } from './types';
-import TaskService from '../services/tasc-service';
+import TaskService from '../services/task-service';
 
 const loadTasksSuccess = (tasks) => {
     return {

@@ -11,7 +11,7 @@ class TaskList extends React.Component {
         super(props);
 
         this.state = {
-            tasks: props.tasks
+            onlyCritical: false,
         }
     }
 
@@ -19,22 +19,34 @@ class TaskList extends React.Component {
         this.props.loadTasks(this.props.userId);
     }
 
+    onlyCritical = (e) => {
+        this.setState({ onlyCritical: e.target.checked })
+    }
 
     render() {
-
 
         if (!this.props.tasks || this.props.tasks.length < 1) {
             return <p>No tasks</p>
         }
 
-        
+        let filteredTasks;
+        if (this.state.onlyCritical) {
+            //todo: сделать копии массивов
+            filteredTasks = this.props.tasks.filter(task=>task.priority==='critical');
+        }else{
+            filteredTasks = this.props.tasks;
+        }
 
-        let tasksRows = this.props.tasks.map(task => {
-            return <TaskRow task={task} />
-        })
+        let tasksRows = filteredTasks.map(task => {
+            return <TaskRow key={task.id} task={task} />
+        });
+
+
 
         return (
             <div>
+                <input name="onlyCritical" type="checkbox" onChange={this.onlyCritical} value={this.state.onlyCritical} />
+
                 <table className="test-list-table" >
                     <thead>
                         <tr>
