@@ -3,10 +3,10 @@ const tasks = [
     {
         id: 1,
         userId: 1,
-        title: 'Perform the test task for Simbirsoft1',
+        title: 'Drink coffee',
         priority: 'critical',
         status: 'done',
-        deadline: '10.10.2019',
+        deadline: new Date(2019, 12, 30),
         description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus fugiat, fuga omnis quibusdam doloribus delectus, ratione illum, eaque aut veniam veritatis adipisci laborum. Optio ex nostrum molestiae. Porro, soluta quam?
                       Consectetur quos laboriosam natus doloribus ut necessitatibus, omnis error animi nobis possimus ipsum nisi ea molestias totam temporibus sit corporis tempora voluptatem hic! Facere voluptate unde, veniam facilis omnis dolorum.
                       Reiciendis laborum ea atque quis! Doloremque quas possimus at, ullam unde, dicta aperiam accusantium magni, ratione dolore cupiditate molestias libero cumque rerum sint eaque dolorum quos minima quasi sed officiis.
@@ -16,9 +16,9 @@ const tasks = [
         id: 2,
         userId: 1,
         title: 'Perform the test task for Simbirsoft2',
-        priority: 'normal',
-        status: 'done',
-        deadline: '10.10.2019',
+        priority: 'critical',
+        status: 'inwork',
+        deadline: new Date(2019, 12, 29),
         description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus fugiat, fuga omnis quibusdam doloribus delectus, ratione illum, eaque aut veniam veritatis adipisci laborum. Optio ex nostrum molestiae. Porro, soluta quam?
                       Consectetur quos laboriosam natus doloribus ut necessitatibus, omnis error animi nobis possimus ipsum nisi ea molestias totam temporibus sit corporis tempora voluptatem hic! Facere voluptate unde, veniam facilis omnis dolorum.
                       Reiciendis laborum ea atque quis! Doloremque quas possimus at, ullam unde, dicta aperiam accusantium magni, ratione dolore cupiditate molestias libero cumque rerum sint eaque dolorum quos minima quasi sed officiis.
@@ -26,11 +26,11 @@ const tasks = [
     },
     {
         id: 3,
-        userId: 2,
-        title: 'Perform the test task for Simbirsoft3',
+        userId: 1,
+        title: 'Go to the gym',
         priority: 'normal',
         status: 'done',
-        deadline: '10.10.2019',
+        deadline: new Date(2019, 12, 28),
         description: `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus fugiat, fuga omnis quibusdam doloribus delectus, ratione illum, eaque aut veniam veritatis adipisci laborum. Optio ex nostrum molestiae. Porro, soluta quam?
                       Consectetur quos laboriosam natus doloribus ut necessitatibus, omnis error animi nobis possimus ipsum nisi ea molestias totam temporibus sit corporis tempora voluptatem hic! Facere voluptate unde, veniam facilis omnis dolorum.
                       Reiciendis laborum ea atque quis! Doloremque quas possimus at, ullam unde, dicta aperiam accusantium magni, ratione dolore cupiditate molestias libero cumque rerum sint eaque dolorum quos minima quasi sed officiis.
@@ -45,8 +45,8 @@ class TaskService {
         return res;
     }
 
-    getTask(taskId){
-        var res = tasks.find(x=>x.id == taskId);
+    getTask(taskId) {
+        var res = tasks.find(x => x.id == taskId);
         return res;
     }
 }

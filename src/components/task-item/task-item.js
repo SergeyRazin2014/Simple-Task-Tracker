@@ -28,7 +28,7 @@ class TaskItem extends React.Component {
                     </tr>
                     <tr>
                         <td>Deadline:</td>
-                        <td>{this.props.task.deadline}</td>
+                        <td>{this.props.task.deadline.toLocaleDateString()}</td>
                     </tr>
                     <tr>
                         <td>Status:</td>

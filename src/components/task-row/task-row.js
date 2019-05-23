@@ -6,11 +6,19 @@ class TaskRow extends React.Component {
 
         let url = `task/${this.props.task.id}`;
 
+        let task = { ...this.props.task };
+
+        if (task.description.length > 100) {
+            task.description = task.description.slice(0, 100) + '...';
+        }
+
         return (
             <tr>
                 <td> <Link to={url} >{this.props.task.title}</Link></td>
-                <td>{this.props.task.priority}</td>
-                <td>{this.props.task.deadline}</td>
+                <td>{task.priority}</td>
+                <td>{task.deadline.toLocaleDateString()}</td>
+                <td>{task.status}</td>
+                <td>{task.description}</td>
             </tr>
         )
     }

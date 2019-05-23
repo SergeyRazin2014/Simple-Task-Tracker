@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../../actions/tasksAction';
-import TaskRow from '../task-row';
+import StandardtasksViewFilter from '../standard-tasks-view';
+import ShorttasksViewFilter from '../short-tasks-view';
+import ScrumTasksView from '../scrum-tasks-view';
 
 import './tast-list.css';
 
@@ -12,6 +14,9 @@ class TaskList extends React.Component {
 
         this.state = {
             onlyCritical: false,
+            statusFilter: 'all',
+            sortTaskDeadlineAscending: true,
+            tasksViewFilter: 'standard'
         }
     }
 
@@ -19,8 +24,18 @@ class TaskList extends React.Component {
         this.props.loadTasks(this.props.userId);
     }
 
-    onlyCritical = (e) => {
-        this.setState({ onlyCritical: e.target.checked })
+    filterByStatus = (e) => {
+        this.setState({ statusFilter: e.target.value });
+    }
+
+    sortByDeadline = () => {
+        this.setState((state) => {
+            return { sortTaskDeadlineAscending: !state.sortTaskDeadlineAscending }
+        });
+    }
+
+    selecttasksViewFilter = (e) => {
+        this.setState({ tasksViewFilter: e.target.value });
     }
 
     render() {
@@ -29,36 +44,69 @@ class TaskList extends React.Component {
             return <p>No tasks</p>
         }
 
-        let filteredTasks;
-        if (this.state.onlyCritical) {
-            //todo: сделать копии массивов
-            filteredTasks = this.props.tasks.filter(task=>task.priority==='critical');
-        }else{
-            filteredTasks = this.props.tasks;
+        let filteredTasks = this.props.tasks;
+        if (this.state.statusFilter !== 'all') {
+            filteredTasks = this.props.tasks.filter(task => task.status === this.state.statusFilter);
         }
 
-        let tasksRows = filteredTasks.map(task => {
-            return <TaskRow key={task.id} task={task} />
-        });
+        if (this.state.sortTaskDeadlineAscending) {
+            filteredTasks = filteredTasks.sort((ob1, ob2) => {
+                if (ob1.deadline > ob2.deadline) {
+                    return 1;
+                } else if (ob1.deadline < ob2.deadline) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            })
+        } else {
+            filteredTasks = filteredTasks.sort((ob1, ob2) => {
+                if (ob1.deadline < ob2.deadline) {
+                    return 1;
+                } else if (ob1.deadline > ob2.deadline) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            })
+        }
 
+
+
+        let tasksView;
+        if (this.state.tasksViewFilter === 'standard') {
+            tasksView = <StandardtasksViewFilter tasks={filteredTasks} sortByDeadline={this.sortByDeadline} />
+        } else if (this.state.tasksViewFilter === 'short') {
+            tasksView = <ShorttasksViewFilter tasks={filteredTasks} />
+        } else {
+            tasksView = <ScrumTasksView tasks={filteredTasks} />
+        }
 
 
         return (
-            <div>
-                <input name="onlyCritical" type="checkbox" onChange={this.onlyCritical} value={this.state.onlyCritical} />
 
-                <table className="test-list-table" >
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Priority</th>
-                            <th>Deadline</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tasksRows}
-                    </tbody>
-                </table>
+            <div>
+                <select value={this.state.priority} onChange={this.filterByStatus}>
+                    <option value='all' defaultValue >all</option>
+                    <option value='new'>new</option>
+                    <option value='inwork'>inwork</option>
+                    <option value='done'>done</option>
+                </select>
+
+                <br />
+                <br />
+
+                <select value={this.state.tasksViewFilter} onChange={this.selecttasksViewFilter}>
+                    <option value='standard' defaultValue >standard</option>
+                    <option value='short'>short</option>
+                    <option value='scrum'>scrum</option>
+                </select>
+
+                <br />
+                <br />
+
+                {tasksView}
+
             </div>
         )
     }

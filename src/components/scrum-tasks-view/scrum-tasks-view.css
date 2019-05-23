@@ -1,0 +1,15 @@
+
+.new, .inwork, .done {
+    border:1px solid black;
+    margin:3px;
+    padding:10px;
+    background-color: rosybrown;
+    width:32%
+    
+}     
+
+.scrum{
+    display:flex;
+    flex-direction: row;
+}
+
