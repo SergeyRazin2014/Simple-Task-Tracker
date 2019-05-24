@@ -77,7 +77,7 @@ class TaskList extends React.Component {
         if (this.state.tasksViewFilter === 'standard') {
             tasksView = <StandardtasksViewFilter tasks={filteredTasks} sortByDeadline={this.sortByDeadline} />
         } else if (this.state.tasksViewFilter === 'short') {
-            tasksView = <ShorttasksViewFilter tasks={filteredTasks} />
+            tasksView = <ShorttasksViewFilter tasks={filteredTasks} sortByDeadline={this.sortByDeadline} />
         } else {
             tasksView = <ScrumTasksView tasks={filteredTasks} />
         }
